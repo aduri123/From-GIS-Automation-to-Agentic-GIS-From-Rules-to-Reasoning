@@ -6,290 +6,199 @@
 <title>From GIS Automation to Agentic GIS — From Rules to Reasoning</title>
 <style>
   :root{
-    --bg:#0a0f1a;              /* Esri‑style deep navy */
-    --bg-2:#101826;            /* panel base */
-    --card:#121b2a;            /* card base */
-    --ink:#e8eefc;             /* primary text */
-    --muted:#b9c6e6;           /* secondary text */
-    --accent:#22d3ee;          /* cyan accent */
-    --accent-2:#8b5cf6;        /* violet accent */
-    --ok:#34d399;              /* green */
-    --warn:#f59e0b;            /* amber */
+    --bg:#0a0f1a;
+    --panel:#101826;
+    --ink:#e8eefc;
+    --muted:#b9c6e6;
+    --accent:#22d3ee;
+    --accent2:#8b5cf6;
     --border:rgba(255,255,255,.12);
-    --shadow:0 8px 30px rgba(0,0,0,.25);
   }
-  html,body{height:100%;}
   body{
     margin:0;
-    font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+    font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;
     color:var(--ink);
     background:
-      radial-gradient(1200px 600px at 85% -10%, rgba(139,92,246,.22), transparent 70%),
-      radial-gradient(900px 500px at -10% 10%, rgba(34,211,238,.16), transparent 65%),
-      linear-gradient(180deg, var(--bg), #0c1530 60%, #0b1429 100%);
+      radial-gradient(1000px 600px at 90% -10%, rgba(139,92,246,.2), transparent 70%),
+      radial-gradient(900px 500px at -10% 20%, rgba(34,211,238,.15), transparent 65%),
+      linear-gradient(180deg, var(--bg), #0c1530 70%, #0b1429 100%);
   }
+  .page{max-width:1200px;margin:40px auto;padding:0 24px;}
+  h1{font-size:2rem;font-weight:800;margin-bottom:6px;}
+  p.subtitle{color:var(--muted);font-size:1rem;line-height:1.4;margin-top:0;}
 
-  /* Page */
-  .page{
-    max-width: 1280px;
-    margin: 32px auto 64px;
-    padding: 24px;
-  }
-
-  /* Hero */
-  .hero{
-    position: relative;
+  /* Tech Stack section */
+  .stackbox{
+    margin-top:32px;
     border:1px solid var(--border);
-    border-radius: 20px;
-    padding: 28px 28px 22px;
-    background:
-      linear-gradient(135deg, rgba(139,92,246,.18), rgba(34,211,238,.10)) ,
-      linear-gradient(0deg, rgba(255,255,255,.02), rgba(255,255,255,.02));
-    box-shadow: var(--shadow);
-    overflow: hidden;
+    border-radius:18px;
+    padding:24px 30px;
+    background:linear-gradient(135deg, rgba(34,211,238,.12), rgba(139,92,246,.08));
+    box-shadow:0 6px 20px rgba(0,0,0,.3);
   }
-  .hero h1{
-    margin:0 0 8px;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    font-size: clamp(22px, 3.2vw, 36px);
+  .stackbox h2{
+    color:var(--accent);
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    font-size:1.1rem;
+    margin-top:0;
+    margin-bottom:12px;
   }
-  .subtitle{
-    margin: 6px 0 0;
-    color: var(--muted);
-    font-size: clamp(14px, 1.6vw, 16px);
-    line-height: 1.5;
-  }
+  .stackbox ul{list-style:none;margin:0;padding:0;line-height:1.8;}
+  .stackbox li strong{color:var(--accent2);}
 
-  .badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
-  .badge{
-    border:1px solid var(--border);
-    border-radius:999px;
-    padding:6px 10px;
-    font-size:12px;
-    color:var(--muted);
-    background: rgba(255,255,255,.02);
-  }
-  .stack{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-  .stack .pill{
-    font-size:12px; padding:6px 10px; border-radius:999px; border:1px solid var(--border);
-    background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-    color:var(--ink);
-  }
-
-  /* Grid Legend */
+  /* Table section */
   .legend{
-    display:grid;grid-template-columns: 60px 1fr 1fr;gap:12px;align-items:center;
-    margin-top: 18px;
-    padding: 10px 12px; border:1px dashed var(--border); border-radius:14px;
-    background: rgba(255,255,255,.02);
-    color: var(--muted);
-  }
-  .legend div{font-size:12px; text-transform:uppercase; letter-spacing:.08em}
-  .legend .colhead{color:var(--ink); font-weight:700; letter-spacing:.03em}
-
-  /* Rows */
-  .rows{margin-top:16px; display:grid; gap:12px}
-  .row{
-    display:grid; grid-template-columns: 60px 1fr 1fr; gap:12px;
-    border:1px solid var(--border); border-radius:16px; overflow:hidden;
-    background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
-  }
-  .cell{padding:16px 16px}
-  .cell.split{display:flex;gap:12px; align-items:flex-start}
-  .idx{
-    display:grid; place-items:center; font-weight:800; font-size:18px; color:white;
-    background: linear-gradient(135deg, var(--accent-2), var(--accent));
-  }
-  .today{background:rgba(139,92,246,.07)}
-  .agentic{background:rgba(34,211,238,.07)}
-  .tag{font-size:12px; color: var(--muted); text-transform:uppercase; letter-spacing:.08em}
-  .title{font-weight:700; font-size:15px; margin-top:2px}
-  .p{color:var(--ink); opacity:.92; font-size:14px; line-height:1.5; margin-top:6px}
-
-  /* Callout */
-  .callout{
-    margin-top:16px; padding:14px 16px; border:1px solid var(--border); border-radius:14px;
-    background: linear-gradient(90deg, rgba(52,211,153,.16), rgba(34,211,238,.08));
-    font-size:14px;
-  }
-
-  /* Footer */
-  .foot{
-    margin-top:22px; display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between;
+    display:grid;
+    grid-template-columns:60px 1fr 1fr;
+    gap:12px;
+    align-items:center;
+    margin-top:36px;
+    padding:10px 12px;
+    border:1px dashed var(--border);
+    border-radius:14px;
     color:var(--muted);
-    border-top:1px solid var(--border); padding-top:14px;
   }
-  .actions{display:flex; gap:10px}
+  .legend .colhead{color:var(--ink);font-weight:700;}
+
+  .rows{margin-top:16px;display:grid;gap:12px;}
+  .row{
+    display:grid;
+    grid-template-columns:60px 1fr 1fr;
+    gap:12px;
+    border:1px solid var(--border);
+    border-radius:16px;
+    overflow:hidden;
+    background:rgba(255,255,255,.02);
+  }
+  .idx{
+    display:grid;place-items:center;
+    font-weight:800;font-size:18px;color:#fff;
+    background:linear-gradient(135deg,var(--accent2),var(--accent));
+  }
+  .cell{padding:16px;}
+  .today{background:rgba(139,92,246,.07);}
+  .agentic{background:rgba(34,211,238,.07);}
+  .tag{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;}
+  .title{font-weight:700;font-size:15px;margin-top:2px;}
+
+  .callout{
+    margin-top:20px;
+    padding:14px 16px;
+    border:1px solid var(--border);
+    border-radius:14px;
+    background:linear-gradient(90deg, rgba(52,211,153,.16), rgba(34,211,238,.08));
+  }
+  .footer{
+    margin-top:24px;
+    border-top:1px solid var(--border);
+    padding-top:12px;
+    color:var(--muted);
+    display:flex;justify-content:space-between;align-items:center;
+    flex-wrap:wrap;
+  }
   button.print{
-    all:unset; cursor:pointer; padding:8px 12px; border-radius:10px; border:1px solid var(--border);
-    background: rgba(255,255,255,.03); font-size:13px; color: var(--ink);
+    all:unset;cursor:pointer;
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:8px 12px;
+    background:rgba(255,255,255,.03);
+    font-size:13px;
   }
-  button.print:active{transform: translateY(1px)}
-
-  /* Responsive */
-  @media (max-width: 900px){
-    .legend, .row{grid-template-columns: 48px 1fr;}
-    .legend .colhead.agent{display:none}
-    .row .today, .row .agentic{border-top:1px solid var(--border)}
+  button.print:hover{background:rgba(255,255,255,.06);}
+  @media(max-width:900px){
+    .legend,.row{grid-template-columns:48px 1fr;}
   }
-
-  /* Print friendly (16:9) */
   @media print{
-    @page { size: 1920px 1080px; margin: 18px; }
-    body{ background: white; }
-    .page{ max-width: unset; margin:0; }
-    .hero{ box-shadow: none; }
-    button.print{ display:none; }
+    @page{size:1920px 1080px;margin:20px;}
+    body{background:white;color:black;}
+    button.print{display:none;}
   }
 </style>
 </head>
 <body>
-  <div class="page">
-    <section class="hero">
-      <h1>From GIS Automation to Agentic GIS — From Rules to Reasoning</h1>
-      <p class="subtitle">How today’s workflows evolve when we add an <strong>agentic layer</strong> (LLMs + LangChain + ArcGIS Knowledge) as a <strong>non‑disruptive side‑car</strong>.</p>
+<div class="page">
 
-      <div class="badges">
-        <span class="badge">Presentation‑ready</span>
-        <span class="badge">16:9 print optimized</span>
-        <span class="badge">Bilingual‑friendly (EN/AR)</span>
-      </div>
+  <header>
+    <h1>From GIS Automation to Agentic GIS — From Rules to Reasoning</h1>
+    <p class="subtitle">
+      How today’s workflows evolve when we add an <strong>agentic layer</strong> (LLMs + LangChain + ArcGIS Knowledge)
+      as a <strong>non-disruptive side-car</strong>.
+    </p>
+  </header>
 
-      <div class="stack" aria-label="Technology Stack Supporting the Flow">
-        <span class="pill">LLMs: GPT‑4o / Llama‑3 / Mistral</span>
-        <span class="pill">Agent Framework: LangChain / LangGraph</span>
-        <span class="pill">Knowledge: ArcGIS Knowledge (openCypher)</span>
-        <span class="pill">Automation: ArcGIS API for Python / ArcPy</span>
-        <span class="pill">Orchestration: FastAPI Side‑Car</span>
-      </div>
+  <!-- Technology Stack -->
+  <section class="stackbox">
+    <h2>Technology Stack Supporting the Flow</h2>
+    <ul>
+      <li><strong>LLMs:</strong> GPT-4o / Llama-3 / Mistral</li>
+      <li><strong>Agent Framework:</strong> LangChain / LangGraph</li>
+      <li><strong>Knowledge Integration:</strong> ArcGIS Knowledge (openCypher)</li>
+      <li><strong>Automation Interfaces:</strong> ArcGIS API for Python / ArcPy</li>
+      <li><strong>Orchestration Layer:</strong> FastAPI Side-Car</li>
+    </ul>
+  </section>
 
-      <div class="legend">
-        <div>#</div>
-        <div class="colhead">Today — GIS Automation</div>
-        <div class="colhead agent">Agentic GIS — What’s New</div>
-      </div>
-
-      <div class="rows">
-        <!-- 1 Interaction -->
-        <article class="row" role="group" aria-labelledby="r1">
-          <div class="idx" id="r1">1</div>
-          <div class="cell today">
-            <div class="tag">Interaction</div>
-            <div class="title">Forms, scripts, fixed filters, dashboards.</div>
-          </div>
-          <div class="cell agentic">
-            <div class="tag">Interaction</div>
-            <div class="title">Natural‑language questions & tasks; agents plan steps and call tools.</div>
-          </div>
-        </article>
-
-        <!-- 2 Reasoning -->
-        <article class="row" role="group" aria-labelledby="r2">
-          <div class="idx" id="r2">2</div>
-          <div class="cell today">
-            <div class="tag">Reasoning</div>
-            <div class="title">Predefined rules & geoprocessing models.</div>
-          </div>
-          <div class="cell agentic">
-            <div class="tag">Reasoning</div>
-            <div class="title">LLM reasoning + policy interpretation (by‑laws, SOPs) with traceable steps.</div>
-          </div>
-        </article>
-
-        <!-- 3 Workflow -->
-        <article class="row" role="group" aria-labelledby="r3">
-          <div class="idx" id="r3">3</div>
-          <div class="cell today">
-            <div class="tag">Workflow</div>
-            <div class="title">Single‑app automation (a model / script per task).</div>
-          </div>
-          <div class="cell agentic">
-            <div class="tag">Workflow</div>
-            <div class="title">Multi‑agent orchestration across apps (Permit, Registry, EO, Environment).</div>
-          </div>
-        </article>
-
-        <!-- 4 Data Context -->
-        <article class="row" role="group" aria-labelledby="r4">
-          <div class="idx" id="r4">4</div>
-          <div class="cell today">
-            <div class="tag">Data Context</div>
-            <div class="title">Static layers or single‑system APIs.</div>
-          </div>
-          <div class="cell agentic">
-            <div class="tag">Data Context</div>
-            <div class="title">Semantic retrieval + Knowledge Graph linking parcels ↔ zones ↔ owners.</div>
-          </div>
-        </article>
-
-        <!-- 5 Action -->
-        <article class="row" role="group" aria-labelledby="r5">
-          <div class="idx" id="r5">5</div>
-          <div class="cell today">
-            <div class="tag">Action</div>
-            <div class="title">Manual hand‑offs; scheduled jobs.</div>
-          </div>
-          <div class="cell agentic">
-            <div class="tag">Action</div>
-            <div class="title">Agents execute via ArcGIS API / ArcPy & Workflow Manager; trigger side‑car APIs.</div>
-          </div>
-        </article>
-
-        <!-- 6 Learning -->
-        <article class="row" role="group" aria-labelledby="r6">
-          <div class="idx" id="r6">6</div>
-          <div class="cell today">
-            <div class="tag">Learning</div>
-            <div class="title">No feedback loop.</div>
-          </div>
-          <div class="cell agentic">
-            <div class="tag">Learning</div>
-            <div class="title">SPAR Reflect: results logged to ArcGIS Knowledge; prompts/rules improve.</div>
-          </div>
-        </article>
-
-        <!-- 7 Governance -->
-        <article class="row" role="group" aria-labelledby="r7">
-          <div class="idx" id="r7">7</div>
-          <div class="cell today">
-            <div class="tag">Governance</div>
-            <div class="title">User roles per app.</div>
-          </div>
-          <div class="cell agentic">
-            <div class="tag">Governance</div>
-            <div class="title">ABAC/RBAC tokens for agent connectors; audit of actions & Cypher queries.</div>
-          </div>
-        </article>
-
-        <!-- 8 Outcome -->
-        <article class="row" role="group" aria-labelledby="r8">
-          <div class="idx" id="r8">8</div>
-          <div class="cell today">
-            <div class="tag">Outcome</div>
-            <div class="title">Maps & reports.</div>
-          </div>
-          <div class="cell agentic">
-            <div class="tag">Outcome</div>
-            <div class="title">Evidence‑based decisions (maps + reasoning trace + compliance status).</div>
-          </div>
-        </article>
-      </div>
-
-      <div class="callout">
-        <strong>Key takeaway:</strong> The <em>agentic layer</em> is additive — it augments existing systems without replacing them.
-      </div>
-
-      <div class="foot">
-        <div>Aduri Sreenivas · MicroCenter Gulf</div>
-        <div class="actions">
-          <button class="print" onclick="window.print()">Print to PDF (16:9)</button>
-        </div>
-      </div>
-    </section>
+  <!-- Comparison Table -->
+  <div class="legend">
+    <div>#</div>
+    <div class="colhead">Today — GIS Automation</div>
+    <div class="colhead">Agentic GIS — What’s New</div>
   </div>
 
+  <div class="rows">
+    <div class="row">
+      <div class="idx">1</div>
+      <div class="cell today"><div class="tag">Interaction</div><div class="title">Forms, scripts, fixed filters, dashboards.</div></div>
+      <div class="cell agentic"><div class="tag">Interaction</div><div class="title">Natural-language questions & tasks; agents plan steps and call tools.</div></div>
+    </div>
+    <div class="row">
+      <div class="idx">2</div>
+      <div class="cell today"><div class="tag">Reasoning</div><div class="title">Predefined rules & geoprocessing models.</div></div>
+      <div class="cell agentic"><div class="tag">Reasoning</div><div class="title">LLM reasoning + policy interpretation (by-laws, SOPs) with traceable steps.</div></div>
+    </div>
+    <div class="row">
+      <div class="idx">3</div>
+      <div class="cell today"><div class="tag">Workflow</div><div class="title">Single-app automation (a model / script per task).</div></div>
+      <div class="cell agentic"><div class="tag">Workflow</div><div class="title">Multi-agent orchestration across apps (Permit, Registry, EO, Environment).</div></div>
+    </div>
+    <div class="row">
+      <div class="idx">4</div>
+      <div class="cell today"><div class="tag">Data Context</div><div class="title">Static layers or single-system APIs.</div></div>
+      <div class="cell agentic"><div class="tag">Data Context</div><div class="title">Semantic retrieval + Knowledge Graph linking parcels ↔ zones ↔ owners.</div></div>
+    </div>
+    <div class="row">
+      <div class="idx">5</div>
+      <div class="cell today"><div class="tag">Action</div><div class="title">Manual hand-offs; scheduled jobs.</div></div>
+      <div class="cell agentic"><div class="tag">Action</div><div class="title">Agents execute via ArcGIS API / ArcPy & Workflow Manager; trigger side-car APIs.</div></div>
+    </div>
+    <div class="row">
+      <div class="idx">6</div>
+      <div class="cell today"><div class="tag">Learning</div><div class="title">No feedback loop.</div></div>
+      <div class="cell agentic"><div class="tag">Learning</div><div class="title">SPAR Reflect: results logged to ArcGIS Knowledge; prompts / rules improve.</div></div>
+    </div>
+    <div class="row">
+      <div class="idx">7</div>
+      <div class="cell today"><div class="tag">Governance</div><div class="title">User roles per app.</div></div>
+      <div class="cell agentic"><div class="tag">Governance</div><div class="title">ABAC / RBAC tokens for agent connectors; audit of actions & Cypher queries.</div></div>
+    </div>
+    <div class="row">
+      <div class="idx">8</div>
+      <div class="cell today"><div class="tag">Outcome</div><div class="title">Maps & reports.</div></div>
+      <div class="cell agentic"><div class="tag">Outcome</div><div class="title">Evidence-based decisions (maps + reasoning trace + compliance status).</div></div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>Key Takeaway:</strong> The <em>agentic layer</em> is additive — it augments existing systems without replacing them.
+  </div>
+
+  <div class="footer">
+    <div>Aduri Sreenivas · MicroCenter Gulf</div>
+    <button class="print" onclick="window.print()">Print to PDF (16:9)</button>
+  </div>
+
+</div>
 </body>
 </html>
-
 
