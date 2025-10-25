@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>From GIS Automation to Agentic GIS — From Rules to Reasoning</title>
+<style>
+  :root{
+    --ink:#0A0F1A;
+    --brand:#1E3A8A;
+    --brand-2:#3B82F6;
+    --bg:#F5F7FD;
+    --card:#FFFFFF;
+    --muted:#6B7280;
+    --line:#E5E7EB;
+  }
+  body{margin:0; font-family:Inter, system-ui; color:var(--ink); background:var(--bg); line-height:1.35;}
+  .wrap{max-width:1100px; margin:48px auto; padding:0 20px;}
+  .title{background:linear-gradient(135deg,#0B122C,#213169 65%,#3B82F6); color:#fff; border-radius:16px; padding:24px;}
+  .title h1{margin:0; font-size:28px;}
+  .title p{margin:8px 0 0; color:#E5E7EB; font-size:14px;}
+  .grid{margin-top:20px; display:grid; gap:14px;}
+  .row{display:grid; grid-template-columns:220px 1fr 1fr; gap:14px; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px;}
+  .pill{display:inline-grid; place-items:center; width:28px; height:28px; border-radius:50%; background:#EEF2FF; color:#1E3A8A; font-weight:700; font-size:14px;}
+  .aspect{font-weight:700;}
+  .today{background:rgba(2,6,23,.03); border-left:4px solid #CBD5E1; padding-left:10px; border-radius:2px;}
+  .agentic{border-left:4px solid #3B82F6; padding-left:10px; background:rgba(59,130,246,.06); border-radius:2px;}
+  .note{margin-top:14px; font-size:12px; color:#475569;}
+  .tech{margin-top:40px; background:var(--card); border-radius:14px; border:1px solid var(--line); padding:20px; box-shadow:0 6px 12px rgba(2,6,23,.06);}
+  .tech h2{margin-top:0; color:var(--brand); font-size:20px;}
+  .tech ul{list-style:none; padding:0; margin:0;}
+  .tech li{padding:6px 0; font-size:15px;}
+  .foot{margin-top:18px; display:flex; justify-content:space-between; font-size:12px; color:#475569;}
+</style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="title">
+      <h1>From GIS Automation to Agentic GIS — From Rules to Reasoning</h1>
+      <p>How today’s workflows evolve when we add an <strong>agentic layer</strong> (LLMs + LangChain + ArcGIS Knowledge) as a non‑disruptive side‑car.</p>
+    </header>
+
+    <section class="grid">
+      <article class="row">
+        <div><span class="pill">1</span> Interaction</div>
+        <div class="today">Forms, scripts, fixed filters, dashboards.</div>
+        <div class="agentic">Natural‑language questions & tasks; agents plan steps and call tools.</div>
+      </article>
+
+      <article class="row">
+        <div><span class="pill">2</span> Reasoning</div>
+        <div class="today">Predefined rules & geoprocessing models.</div>
+        <div class="agentic">LLM reasoning + policy interpretation (by‑laws, SOPs) with traceable steps.</div>
+      </article>
+
+      <article class="row">
+        <div><span class="pill">3</span> Workflow</div>
+        <div class="today">Single‑app automation (a model / script per task).</div>
+        <div class="agentic">Multi‑agent orchestration across apps (Permit, Registry, EO, Environment).</div>
+      </article>
+
+      <article class="row">
+        <div><span class="pill">4</span> Data Context</div>
+        <div class="today">Static layers or single‑system APIs.</div>
+        <div class="agentic">Semantic retrieval + Knowledge Graph linking parcels ↔ zones ↔ owners.</div>
+      </article>
+
+      <article class="row">
+        <div><span class="pill">5</span> Action</div>
+        <div class="today">Manual hand‑offs; scheduled jobs.</div>
+        <div class="agentic">Agents execute via ArcGIS API / ArcPy & Workflow Manager; trigger side‑car APIs.</div>
+      </article>
+
+      <article class="row">
+        <div><span class="pill">6</span> Learning</div>
+        <div class="today">No feedback loop.</div>
+        <div class="agentic">SPAR Reflect: results logged to ArcGIS Knowledge; prompts/rules improve.</div>
+      </article>
+
+      <article class="row">
+        <div><span class="pill">7</span> Governance</div>
+        <div class="today">User roles per app.</div>
+        <div class="agentic">ABAC/RBAC tokens for agent connectors; audit of actions & Cypher queries.</div>
+      </article>
+
+      <article class="row">
+        <div><span class="pill">8</span> Outcome</div>
+        <div class="today">Maps & reports.</div>
+        <div class="agentic">Evidence‑based decisions (maps + reasoning trace + compliance status).</div>
+      </article>
+    </section>
+
+    <p class="note">Agentic layer is additive — it augments existing systems without replacing them.</p>
+
+    <section class="tech">
+      <h2>Technology Stack Supporting the Flow</h2>
+      <ul>
+        <li><strong>LLMs:</strong> GPT‑4o / Llama‑3 / Mistral</li>
+        <li><strong>Agent Framework:</strong> LangChain / LangGraph</li>
+        <li><strong>Knowledge Integration:</strong> ArcGIS Knowledge (openCypher)</li>
+        <li><strong>Automation Interfaces:</strong> ArcGIS API for Python / ArcPy</li>
+        <li><strong>Orchestration Layer:</strong> FastAPI Side‑Car</li>
+      </ul>
+    </section>
+
+    <footer class="foot">
+      <span>Aduri Sreenivas · MicroCenter Gulf</span>
+      <span>Presentation‑ready · Print to PDF or insert in PPT</span>
+    </footer>
+  </main>
+</body>
+</html>
